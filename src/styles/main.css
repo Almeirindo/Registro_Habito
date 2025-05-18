@@ -4,6 +4,10 @@
     --text-light: #ffffff;
     --background: #f3f4f6;
     --card-bg: #ffffff;
+    --text-dark: #1f2937;
+    --border-color: #e5e7eb;
+    --error-color: #ef4444;
+    --success-color: #10b981;
 }
 
 * {
@@ -16,6 +20,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background);
     line-height: 1.6;
+    color: var(--text-dark);
 }
 
 .navbar {
@@ -56,6 +61,7 @@ body {
     padding: 0 1rem;
 }
 
+/* Cards e Botões */
 .card {
     background-color: var(--card-bg);
     border-radius: 0.5rem;
@@ -72,59 +78,286 @@ body {
     border-radius: 0.25rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 1rem;
 }
 
 .btn:hover {
     background-color: var(--primary-dark);
 }
 
-/* Animações */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
-.fade-in {
-    animation: fadeIn 0.3s ease-in;
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
 }
 
-/* Checkbox personalizado com animação */
-.custom-checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary-color);
-    border-radius: 4px;
-    display: inline-block;
-    position: relative;
+/* Formulários */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Autenticação */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+}
+
+.auth-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-card h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.auth-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Hábitos */
+.habits-page {
+    padding: 1rem;
+}
+
+.habits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.habits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.habit-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.habit-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Calendário */
+.calendar-container {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-weight: 500;
+    padding: 0.5rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.custom-checkbox.checked::after {
-    content: '✓';
-    position: absolute;
+.calendar-day:hover {
+    background-color: var(--primary-color);
     color: var(--text-light);
-    font-size: 14px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.calendar-day.today {
+    border-color: var(--primary-color);
+    font-weight: bold;
+}
+
+.calendar-day.empty {
+    border: none;
+}
+
+/* Perfil */
+.profile-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.profile-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.stat-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.stat-card h4 {
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Checkbox personalizado */
+.custom-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
 }
 
 .custom-checkbox.checked {
     background-color: var(--primary-color);
 }
 
-/* Barra de progresso animada */
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #e5e7eb;
-    border-radius: 5px;
-    overflow: hidden;
+.custom-checkbox.checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--text-light);
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.progress-bar-fill {
-    height: 100%;
-    background-color: var(--primary-color);
-    transition: width 0.5s ease-in-out;
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .habits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-day {
+        font-size: 0.875rem;
+    }
 }
